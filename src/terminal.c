@@ -1,7 +1,18 @@
-#include <termios.h>    //tcsetattr(), tcgetattr()
-#include "inc/terminal.h"
+/**
+ * @file    terminal.c
+ * @author  Hamza Siddiqui & Mustafa Siddiqui
+ * @brief   Definitions for functions defined in terminal.h
+ * @date    2022-02-02
+ */
 
-//termios struct to store original terminal settings
+#include <stdio.h>          // perror()
+#include <stdlib.h>         // exit()
+#include <unistd.h>         // STDIN_FILENO
+#include <termios.h>        // tcsetattr(), tcgetattr()
+//-//
+#include "../inc/terminal.h"
+
+// termios struct to store original terminal settings
 struct termios orig_termios;
 
 // print error message & exit program
@@ -19,26 +30,30 @@ void disableRawMode(void) {
 
 // raw mode for terminal
 void enableRawMode(void) {
-    //storing original terminal attributes
+    // storing original terminal attributes
     if (tcgetattr(STDIN_FILENO, &orig_termios) == -1) {
         die("tcsetattr");
     }
-    //disabling raw mode on program exit
+
+    // disabling raw mode on program exit
     atexit(disableRawMode);
 
-    //raw struct to store new terminal settings (turning off previous terminal's flags)
+    // raw struct to store new terminal settings (turning off previous terminal's flags)
     struct termios raw = orig_termios;
 
-    //input flags: fixing ctrl+m, disabling other control inputs
+    // input flags: fixing ctrl+m, disabling other control inputs
     raw.c_iflag &= ~(BRKINT | ICRNL | INPCK | ISTRIP | IXON);
-    //output flags: turning off all output processing features ("\n" to "\r\n")
+
+    // output flags: turning off all output processing features ("\n" to "\r\n")
     raw.c_oflag &= ~(OPOST);
-    //control flags: turning off miscellaneous flags
+
+    // control flags: turning off miscellaneous flags
     raw.c_cflag |= (CS8);
-    //local flags: disabling echo feature, canonical mode, control inputs
+
+    // local flags: disabling echo feature, canonical mode, control inputs
     raw.c_lflag &= ~(ECHO | ICANON | IEXTEN | ISIG);
 
-    //passing modifed struct to tcsetattr() to set new terminal attributes
+    // passing modifed struct to tcsetattr() to set new terminal attributes
     if (tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw) == -1) {
         die("tcsetattr");
     }
