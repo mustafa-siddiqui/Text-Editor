@@ -1,7 +1,9 @@
-.txt
-.pdf
-.jpg
-.jpeg
-.zip
+*.txt
+*.pdf
+*.jpg
+*.jpeg
+*.zip
 .DS_Store
+a.out
+a.exe
 
