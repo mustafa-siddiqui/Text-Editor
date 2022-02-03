@@ -16,7 +16,9 @@ int main() {
       char c = '\0';
       read(STDIN_FILENO, &c, 1);
 
+      // check if character is a control key
       if (iscntrl(c)) {
+         // detect ctrl + c
          if (c == 3)
             break;
          printf("%d\r\n", c);
