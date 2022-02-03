@@ -7,5 +7,5 @@
 a.out
 *.exe
 .vscode/
-.textEditor
+textEditor
 
