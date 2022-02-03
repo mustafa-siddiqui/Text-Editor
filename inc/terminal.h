@@ -5,6 +5,9 @@
  * @date    2022-02-02
  */
 
+#ifndef _TERMINAL_H_
+#define _TERMINAL_H_
+
 /**
  * @brief   Print error message and exit program.
  * @param   s: Error message to display
@@ -27,3 +30,5 @@ void disableRawMode(void);
  * @return  NULL
  */
 void enableRawMode(void);
+
+#endif /* _TERMINAL_H_ */

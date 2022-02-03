@@ -17,15 +17,13 @@ int main() {
       read(STDIN_FILENO, &c, 1);
 
       if (iscntrl(c)) {
+         if (c == 3)
+            break;
          printf("%d\r\n", c);
       }
       else {
-         printf("%d ('%c')\r\n", c, c);
+         printf("%c\r\n", c);
       }
-
-      // exit if input = 'q'
-      if (c == 'q')
-         break;
    }
    
    return 0;
