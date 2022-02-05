@@ -58,16 +58,17 @@ int search(Node* top, char letterToSearch) {
 
 /* Print elements stored in stack. */
 void printStack(Node* top) {
-    Node* currentNode = top;
-
-    // iterate through stack
-    while (currentNode->next != NULL) {
-        printf("%c", currentNode->letter);
-        currentNode = currentNode->next;
+    // base case
+    if (top == NULL) {
+        printf("\n");
+        return;
     }
+    
+    // recursive call to next node
+    printStack(top->next);
 
-    // print last element in stack
-    printf("%c\n", currentNode->letter);
+    // print data
+    printf("%c", top->letter);
 }
 
 /* Free up allocated memory. */
