@@ -5,7 +5,7 @@
  */
 
 #include <stdio.h>
-#include <stdlib.h>  // malloc()
+#include <stdlib.h>  // malloc(), system()
 #include <unistd.h>  // STDIN_FILENO
 #include <ctype.h>   // iscntrl()
 #include <errno.h>   // errno
@@ -43,21 +43,34 @@ int main() {
 
             // else delete letter from stack
             top = pop(top);
+
+            // clear terminal console before every write
+            system("clear");
+
+            // print stack content & move cursor to last letter
             disableRawMode();
             printStack(top);
+            printf("\n\r");
             enableRawMode();
          }
       }
       else {
-         // add letters onto stack & print
+         // add letters onto stack
          top = push(top, c);
+
+         // clear terminal console before every write
+         system("clear");
+
+         // print stack content & move cursor to last letter
          disableRawMode();
          printStack(top);
+         printf("\n\r");
          enableRawMode();
       }
 
+      // exit program if control key + 'c' is pressed
       if (c == CTRL_KEY('c'))
-         break;
+         break;      
    }
    
    disableRawMode();
