@@ -21,7 +21,12 @@ Node* push(Node* top, char letter) {
 }
 
 /* Return node value from top of stack without deleting it. */
-char peak(Node* top) {
+char peek(Node* top) {
+    // if stack empty, return null character
+    if (top == NULL) {
+        return '\0';
+    }
+
     return top->letter;
 }   
 

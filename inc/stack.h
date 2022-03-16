@@ -22,10 +22,10 @@ struct stackNode {
 Node* push(Node* top, char letter);
 
 /*
-    Peak letter at the top of the stack.
+    Peek letter at the top of the stack.
     Returns value (char) of the top node of the stack.
 */
-char peak(Node* top);
+char peek(Node* top);
 
 /*
     Delete a value from the top of stack.
