@@ -65,7 +65,6 @@ int search(Node* top, char letterToSearch) {
 void printStack(Node* top) {
     // base case
     if (top == NULL) {
-        printf("\n");
         return;
     }
     
