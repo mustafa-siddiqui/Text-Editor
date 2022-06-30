@@ -1,5 +1,5 @@
 # Text-Editor
-A simple, basic terminal-based text editor.
+A simple, basic terminal-based text editor; created as a learning project.
 
 #### <u>Updates</u>:
 - `printStack()` no longer prints `'\n'` after printing the stack elements
